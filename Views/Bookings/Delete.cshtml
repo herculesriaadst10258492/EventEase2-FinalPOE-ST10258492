@@ -1,0 +1,16 @@
+﻿@model EventEase2.Models.Booking
+@{
+    ViewData["Title"] = "Delete Booking";
+}
+<h1>Delete Booking</h1>
+<h3>Are you sure you want to delete this booking?</h3>
+<div>
+    <h4>@Model.AttendeeName (@Model.AttendeeEmail) – Event: @Model.Event?.EventName</h4>
+    <hr />
+</div>
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="BookingId" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

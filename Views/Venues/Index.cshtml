@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EventEase2.Models.Venue>
+@{
+    ViewData["Title"] = "Venues";
+}
+<h1>Venues</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Venue</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Venue Name</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Capacity</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.VenueName</td>
+                <td>@item.Location</td>
+                <td>@item.AvailabilityStatus</td>
+                <td>@item.Capacity</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="Venue image" style="max-width:100px; height:auto;" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.VenueId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.VenueId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.VenueId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
